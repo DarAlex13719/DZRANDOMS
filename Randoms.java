@@ -1,18 +1,31 @@
 import java.util.Iterator;
 import java.util.Random;
-import java.util.stream.IntStream;
 
 public class Randoms implements Iterable<Integer> {
     protected Random random;
-    private final IntStream stream;
+    protected int min;
+    protected int max;
 
     public Randoms(int min, int max) {
         this.random = new Random();
-        stream = random.ints((max - min), min, max + 1);
+        this.min = min;
+        this.max = max;
     }
 
     @Override
     public Iterator<Integer> iterator() {
-        return stream.iterator();
+        return new Iterator<Integer>() {
+            @Override
+            public boolean hasNext() {
+                return true;
+            }
+
+            @Override
+            public Integer next() {
+                int i = max - min + 1;
+                return random.nextInt(Math.abs(i)) + min;
+            }
+        };
     }
+
 }

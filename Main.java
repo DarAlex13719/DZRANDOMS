@@ -9,5 +9,14 @@ public class Main {
             }
         }
 
+        System.out.println();
+        for (int r : new Randoms(0, 5)) {
+            System.out.println("Случайное число: " + r);
+            if (r == 5) {
+                System.out.println("Выпало число 5, давайте на этом закончим");
+                break;
+            }
+        }
+
     }
 }
